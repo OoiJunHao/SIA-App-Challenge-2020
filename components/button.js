@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: '#ffffff',
         fontWeight: 'normal',
         fontFamily: 'BakerSignet LT',
         fontSize: 18

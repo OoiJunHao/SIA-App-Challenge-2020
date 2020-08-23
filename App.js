@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,6 +10,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import boardingPassScreen from "./screens/boardingPassScreen";
 import personalDetailScreen from "./screens/personalDetailScreen";
 import travelDetailScreen from "./screens/travelDetailScreen";
+import {Text, View, StyleSheet, Image } from "react-native";
 
 export default function App() {
 
@@ -19,10 +19,33 @@ export default function App() {
 
   const createArrivalStack = () => {
       return (
-          <arrivalCardStack.Navigator initialRouteName="boardingPass" headerMode="none">
-            <arrivalCardStack.Screen name='boardingPass' component={boardingPassScreen}/>
-            <arrivalCardStack.Screen name='personalDetail' component={personalDetailScreen}/>
-            <arrivalCardStack.Screen name='travelDetail' component={travelDetailScreen}/>
+          <arrivalCardStack.Navigator initialRouteName="boardingPass" headerMode="float">
+            <arrivalCardStack.Screen name='boardingPass' component={boardingPassScreen}
+                                     options={{
+                                         headerShown: false,
+                                         headerTitleAlign: 'left',
+                                         headerStatusBarHeight: 100,
+                                         headerTitle: props => <LogoTitle {...props} />
+                                     }}
+            />
+            <arrivalCardStack.Screen name='personalDetail' component={personalDetailScreen}
+                                     options={{
+                                         headerBackTitleVisible: false,
+                                         headerLeft: null,
+                                         headerShown: true,
+                                         headerTitleAlign: 'left',
+                                         headerStatusBarHeight: 100,
+                                         headerTitle: props => <LogoTitle {...props} />
+                                     }}/>
+            <arrivalCardStack.Screen name='travelDetail' component={travelDetailScreen}
+                                     options={{
+                                         headerBackTitleVisible: false,
+                                         headerLeft: null,
+                                         headerShown: true,
+                                         headerTitleAlign: 'left',
+                                         headerStatusBarHeight: 100,
+                                         headerTitle: props => <LogoTitle {...props} />
+                                     }}/>
           </arrivalCardStack.Navigator>
       )
   }
@@ -75,14 +98,38 @@ export default function App() {
           }
         }/>
       </menuTab.Navigator>
+      <StatusBar style="dark" />
     </NavigationContainer>
   );
 }
 
+function LogoTitle() {
+  return (
+      <View style={{flex: 1}}>
+
+          <View style={{flex: 1 , flexDirection: 'row', flexWrap: 'wrap', top: -30, alignItems: 'center' }}>
+              <Image
+                  style={{ width: 100, height: 50 , resizeMode: 'contain'}}
+                  source={require('./assets/singapore_airlines_logo.jpg')}
+              />
+              <Text style={{marginLeft: 10, paddingTop: '2%', fontFamily: 'BakerSignet LT', fontSize: 25}}>KrisMetrics</Text>
+              <Image
+                  style={{ width: 50, height: 50 , resizeMode: 'contain', marginLeft: '24%'}}
+                  source={require('./assets/Vineeth.png')}
+              />
+          </View>
+          <View style={{top: -35}}>
+              <Text style={{marginLeft: 5, fontFamily: 'BakerSignet LT', fontSize: 40}}>Singapore <Text>&#8594;</Text> Japan</Text>
+          </View>
+      </View>
+  );
+}
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F6F6F6',
     alignItems: 'center',
     justifyContent: 'center',
   },
