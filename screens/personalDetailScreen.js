@@ -78,7 +78,7 @@ export default class PersonalDetailScreen extends Component {
                                         style={[styles.button,{alignSelf: 'center'}]}
                                         onPress={() => {
                                             this.props.navigation.goBack();
-                                            alert("put qr code here")
+                                            Alert.alert("Arrival Card Successful!", "*INSERT QR CODE HERE*")
                                         }}
                                     >
                                         <Text>Yes</Text>
